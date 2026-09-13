@@ -1,0 +1,46 @@
+{
+  "guardrails": {
+    "maxCostPerRun": 0.05,
+    "dailyBudget": 10.0,
+    "maxRetriesPerProvider": 3,
+    "timeoutMs": 5000,
+    "shadowTrafficRatio": 0.05,
+    "shadowSampleWindowSize": 30,
+    "promotionScoreRatio": 0.95,
+    "promotionCostRatio": 0.8,
+    "circuitBreakerCooldownMs": 60000,
+    "trafficSpikeRatio": 5.0
+  },
+  "providers": [
+    {
+      "id": "primary-mid",
+      "name": "Sonnet级中档旗舰",
+      "baseUrl": "https://api.anthropic.com/v1/messages",
+      "model": "claude-sonnet-4-20250514",
+      "costPerMInput": 3.0,
+      "costPerMOutput": 15.0,
+      "tier": "P0",
+      "maxOutputTokens": 2000
+    },
+    {
+      "id": "fallback-light",
+      "name": "4o-mini级轻量旗舰",
+      "baseUrl": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-4o-mini",
+      "costPerMInput": 0.25,
+      "costPerMOutput": 1.0,
+      "tier": "P1",
+      "maxOutputTokens": 2000
+    },
+    {
+      "id": "lastline-fast",
+      "name": "Flash级快速轻量",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/models",
+      "model": "gemini-2.0-flash",
+      "costPerMInput": 0.15,
+      "costPerMOutput": 0.6,
+      "tier": "P2",
+      "maxOutputTokens": 2000
+    }
+  ]
+}
